@@ -6,29 +6,30 @@ import DataContext from "../../context/data/DataContext";
 import type { NearEarthObject } from "../../types/feed";
 
 const mockItems: NearEarthObject[] = [
-  {
-    id: "1",
-    name: "Asteroid 1",
-    absolute_magnitude_h: 22.5,
-    estimated_diameter: {
-      kilometers: {
-        estimated_diameter_min: 0.1,
-        estimated_diameter_max: 0.3,
+    {
+      id: "1",
+      name: "Asteroid 1",
+      absolute_magnitude_h: 22.5,
+      estimated_diameter: {
+        kilometers: { estimated_diameter_min: 0.1, estimated_diameter_max: 0.3 },
+        meters: { estimated_diameter_min: 100, estimated_diameter_max: 300 },
+        miles: { estimated_diameter_min: 0.06, estimated_diameter_max: 0.18 },
+        feet: { estimated_diameter_min: 328, estimated_diameter_max: 984 },
       },
-      meters: {
-        estimated_diameter_min: 100,
-        estimated_diameter_max: 300,
-      },
+      is_potentially_hazardous_asteroid: false,
+      close_approach_data: [],
+      is_sentry_object: false,
+      links: { self: "" },
+      neo_reference_id: "1",
+      nasa_jpl_url: "https://nasa.gov",
     },
-    is_potentially_hazardous_asteroid: false,
-  },
-];
+  ];
 
 describe("ItemPage", () => {
   it("renders loading state", () => {
     render(
       <MemoryRouter>
-        <DataContext.Provider value={{ items: [], loading: true }}>
+        <DataContext.Provider value={{ items: [], loading: true, getItemById: (id) => mockItems.find((i) => i.id === id) ?? null, }}>
           <ItemPage />
         </DataContext.Provider>
       </MemoryRouter>
@@ -44,6 +45,7 @@ describe("ItemPage", () => {
           value={{
             items: mockItems,
             loading: false,
+            getItemById: (id) => mockItems.find((i) => i.id === id) ?? null,
           }}
         >
           <ItemPage />
