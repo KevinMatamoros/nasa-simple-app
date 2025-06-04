@@ -65,7 +65,7 @@ describe("ItemPage", () => {
           <ItemPage />
         </MemoryRouter>
       )
-    ).toThrow("ItemList debe estar dentro de DataProvider");
+    ).toThrow("ItemList should have to be inside of DataProvider");
     spy.mockRestore();
   });
 });

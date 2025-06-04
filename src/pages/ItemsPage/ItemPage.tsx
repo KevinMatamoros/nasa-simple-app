@@ -4,22 +4,20 @@ import Card from "../../components/Card/Card";
 
 function ItemPage() {
   const context = useContext(DataContext);
-  if (!context) throw new Error("ItemList debe estar dentro de DataProvider");
+  if (!context) throw new Error("ItemList should have to be inside of DataProvider");
 
   const { items, loading } = context;
 
   return (
     <div className="w-screen h-screen flex justify-center">
-      <div className=" p-8 rounded shadow md:max-w-2xl">
+      <div className=" pt-4 px-4 rounded shadow md:max-w-2xl">
         <h1 className="text-xl font-bold pb-4">Asteroids - NeoWs</h1>
         <p className="pb-4">
-          NeoWs (Near Earth Object Web Service) is a RESTful web service for
-          near earth Asteroid information. With NeoWs a user can: search for
+          NeoWs (Near Earth Object Web Service). With NeoWs a user can: search for
           Asteroids based on their closest approach date to Earth, lookup a
-          specific Asteroid with its NASA JPL small body id, as well as browse
-          the overall data-set.
+          specific Asteroid.
         </p>
-        <div className="max-h-3/4 overflow-scroll">
+        <div className="max-h-[82%] overflow-scroll">
           {!loading ? (
             items.map((el) => <Card key={el.id} item={el} />)
           ) : (

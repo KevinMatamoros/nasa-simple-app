@@ -8,7 +8,7 @@ function DetailsPage() {
   const context = useContext(DataContext);
 
   if (!context) {
-    return <p className="p-8 text-red-600">DataContext no disponible</p>;
+    return <p className="p-8 text-red-600">DataContext is not available</p>;
   }
 
   const { getItemById } = context;
@@ -16,7 +16,7 @@ function DetailsPage() {
 
   return (
     <div className="w-screen h-screen flex justify-center">
-      <div className=" p-8 rounded shadow md:max-w-2xl">
+      <div className=" p-4 rounded shadow md:max-w-2xl">
         <button
           onClick={() => navigate("/")}
           className="mb-4 px-4 py-2 bg-gray-200 text-sm rounded hover:bg-gray-300 transition"
@@ -25,7 +25,7 @@ function DetailsPage() {
         </button>
         {item ? (
           <>
-            <h2 className="text-xl font-bold pb-4">
+            <h2 className="text-2xl font-bold pb-4">
               Asteroid Details – {item.name}
             </h2>
 
@@ -35,15 +35,15 @@ function DetailsPage() {
               className="w-full h-48 object-cover rounded mb-4"
             />
 
-            <div className="mb-2">
+            <div className="mb-4">
               <span className="font-semibold">Absolute Magnitude (H):</span>{" "}
               {item.absolute_magnitude_h}
             </div>
 
             <div className="mb-2">
               <span className="font-semibold">Estimated Diameter:</span>
-              <ul className="pl-4 list-disc">
-                <li>
+              <ul className="pl-6 py-4 list-disc">
+                <li className="pb-2">
                   <strong>Kilometers:</strong>{" "}
                   {item.estimated_diameter.kilometers.estimated_diameter_min.toFixed(
                     2

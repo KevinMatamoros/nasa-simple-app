@@ -75,6 +75,6 @@ describe("DetailsPage", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/DataContext no disponible/)).toBeInTheDocument();
+    expect(screen.getByText(/DataContext is not available/)).toBeInTheDocument();
   });
 });

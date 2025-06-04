@@ -4,6 +4,6 @@ import DataContext from "./DataContext";
 export function useData() {
   const context = useContext(DataContext);
   if (!context)
-    throw new Error("useData debe usarse dentro de <DataProvider>");
+    throw new Error("useData should be use inside <DataProvider>");
   return context;
 }
