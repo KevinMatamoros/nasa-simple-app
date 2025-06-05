@@ -1,9 +1,24 @@
-import { useContext } from "react";
-import DataContext from "../../context/data/DataContext";
 import Card from "../../components/Card/Card";
+import { useData } from "../../context";
 
+/**
+ * ItemPage component displays a list of Near Earth Objects (NEOs) retrieved from NASA's NeoWs API.
+ *
+ * It uses `useData` to access the list of asteroids and the loading state.
+ * If the context is missing, it throws an error to indicate incorrect usage.
+ *
+ * Each asteroid is rendered as a clickable `<Card />` that links to its detail page.
+ *
+ * @returns A React component rendering a scrollable list of NEO cards.
+ *
+ * @example
+ * <ItemPage />
+ *
+ * Requirements:
+ * - Must be rendered within a `<DataProvider>` to access context data.
+ */
 function ItemPage() {
-  const context = useContext(DataContext);
+  const context = useData();
   if (!context) throw new Error("ItemList should have to be inside of DataProvider");
 
   const { items, loading } = context;

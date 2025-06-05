@@ -1,6 +1,17 @@
 import type { NearEarthObject } from "../../types/feed";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Card component to display a summary of a Near Earth Object (NEO) from NASA's data.
+ *
+ * @component
+ * @param {NearEarthObject} item - The NEO data to display, including name, id, magnitude, diameter, and hazard status.
+ *
+ * @example
+ * <Card item={neo} />
+ *
+ * Clicking the card navigates to `/asteroid/{id}` with more details.
+ */
 function Card({ item }: Readonly<{ item: NearEarthObject }>) {
   const navigate = useNavigate();
 

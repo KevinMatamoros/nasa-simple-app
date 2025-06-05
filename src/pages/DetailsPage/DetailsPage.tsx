@@ -1,11 +1,26 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import DataContext from "../../context/data/DataContext";
+import { useData } from "../../context";
 
+/**
+ * DetailsPage component displays detailed information
+ * about a specific Near Earth Object (NEO).
+ *
+ * It retrieves the `id` from the URL parameters and uses
+ * `useData` to fetch the full object data.
+ *
+ * If no data is found, it renders a fallback message.
+ * Includes a "Back" button to return to the main page.
+ *
+ * @returns A React component rendering asteroid detail info.
+ *
+ * @example
+ * Route: /asteroid/123456
+ * <DetailsPage />
+ */
 function DetailsPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const context = useContext(DataContext);
+  const context = useData();
 
   if (!context) {
     return <p className="p-8 text-red-600">DataContext is not available</p>;
