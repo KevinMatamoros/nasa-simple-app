@@ -1,8 +1,14 @@
-import { useState, useEffect, useMemo, type ReactNode, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  type ReactNode,
+  useRef,
+  useCallback,
+} from "react";
 import DataContext from "./DataContext";
 import { fetchItems } from "./fetchData";
 import type { NearEarthObject } from "../../types/feed";
-
 
 /**
  * DataProvider is a React context provider that fetches and stores a list of Near Earth Objects (NEOs)
@@ -35,8 +41,11 @@ export function DataProvider({ children }: Readonly<{ children: ReactNode }>) {
       .finally(() => setLoading(false));
   }, []);
 
-  const getItemById = (id: string): NearEarthObject | null =>
-    items.find((item) => item.id === id) || null;
+  const getItemById = useCallback(
+    (id: string): NearEarthObject | null =>
+      items.find((item) => item.id === id) || null,
+    [items]
+  );
 
   const value = useMemo(
     () => ({
@@ -44,7 +53,7 @@ export function DataProvider({ children }: Readonly<{ children: ReactNode }>) {
       loading,
       getItemById,
     }),
-    [items, loading]
+    [getItemById, items, loading]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
